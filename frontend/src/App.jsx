@@ -412,14 +412,73 @@ Frequently Asked Questions
 {
 
 [
+{
+q:"Do kids need coding experience?",
+a:"No, beginners are welcome."
+},
 
-"No, beginners are welcome.",
+{
+q:"Will recordings be available?",
+a:"Yes, session recordings will be shared."
+},
 
-"Yes, session recordings will be shared.",
+{
+q:"Will participants receive certificates?",
+a:"Yes, certificate will be provided."
+}
 
-"Yes, certificate will be provided."
+].map(
 
-]
+(item,index)=>(
+
+<div
+key={index}
+className="faq-item"
+>
+
+<h3
+
+onClick={()=>
+
+setOpenFaq(
+
+openFaq===index
+
+?
+
+null
+
+:
+
+index
+
+)
+
+}
+
+>
+
+{item.q}
+
+</h3>
+
+{
+
+openFaq===index &&
+
+<p>
+
+{item.a}
+
+</p>
+
+}
+
+</div>
+
+)
+
+)
 
 .map(
 
@@ -455,7 +514,7 @@ index
 
 >
 
-Question {index+1}
+
 
 </h3>
 
