@@ -23,19 +23,12 @@ Tooltip,
 Legend
 );
 
-function Admin() {
+function Admin(){
 
-const [students,setStudents]=
-useState([]);
-
-const [allowed,setAllowed]=
-useState(false);
-
-const [password,setPassword]=
-useState("");
-
-const [search,setSearch]=
-useState("");
+const [students,setStudents]=useState([]);
+const [allowed,setAllowed]=useState(false);
+const [password,setPassword]=useState("");
+const [search,setSearch]=useState("");
 
 useEffect(()=>{
 
@@ -47,20 +40,19 @@ fetchStudents();
 
 },[allowed]);
 
-const fetchStudents=
-async()=>{
+const fetchStudents=async()=>{
 
 try{
 
 const res=
 
 await axios.get(
-"http://localhost:5000/api/students"
+
+`${import.meta.env.VITE_API_URL}/api/students`
+
 );
 
-setStudents(
-res.data
-);
+setStudents(res.data);
 
 }
 
@@ -77,10 +69,9 @@ const exportCSV=()=>{
 const csv=
 
 students
-
 .map(
 
-(s)=>
+s=>
 
 `${s.name},${s.email},${s.phone}`
 
@@ -104,15 +95,11 @@ type:"text/csv"
 
 const url=
 
-URL.createObjectURL(
-blob
-);
+URL.createObjectURL(blob);
 
 const a=
 
-document.createElement(
-"a"
-);
+document.createElement("a");
 
 a.href=url;
 
@@ -139,9 +126,7 @@ s=>
 s.createdAt &&
 
 new Date(
-
 s.createdAt
-
 )
 
 .toDateString()
@@ -157,9 +142,7 @@ const chartData={
 labels:
 
 students.map(
-
 s=>s.name
-
 ),
 
 datasets:[
@@ -180,9 +163,7 @@ backgroundColor:
 
 "#152941",
 
-borderRadius:
-
-16
+borderRadius:16
 
 }
 
@@ -195,7 +176,6 @@ if(!allowed){
 return(
 
 <div
-
 style={{
 
 height:"100vh",
@@ -211,7 +191,6 @@ flexDirection:"column",
 gap:"20px"
 
 }}
-
 >
 
 <h1>
@@ -250,20 +229,14 @@ password===
 
 ){
 
-setAllowed(
-
-true
-
-);
+setAllowed(true);
 
 }
 
 else{
 
 alert(
-
 "Wrong Password"
-
 );
 
 }
@@ -291,7 +264,6 @@ return(
 Admin Dashboard
 
 </h1>
-
 
 <div className="stats">
 
@@ -329,9 +301,6 @@ Today
 
 </div>
 
-
-<div>
-
 <input
 
 className="search"
@@ -364,11 +333,7 @@ Export CSV
 
 </button>
 
-</div>
-
-
 <div
-
 style={{
 
 background:"white",
@@ -382,17 +347,11 @@ marginTop:"30px",
 marginBottom:"30px"
 
 }}
-
 >
 
-<Bar
-
-data={chartData}
-
-/>
+<Bar data={chartData}/>
 
 </div>
-
 
 {
 
@@ -400,7 +359,7 @@ students
 
 .filter(
 
-(student)=>
+student=>
 
 student.name
 
@@ -421,11 +380,8 @@ search
 (student)=>(
 
 <div
-
 key={student._id}
-
 className="card"
-
 >
 
 <h3>
@@ -471,7 +427,6 @@ student.createdAt
 }
 
 </p>
-
 
 <button
 
@@ -520,7 +475,7 @@ return;
 
 await axios.put(
 
-`http://localhost:5000/api/students/${student._id}`,
+`${import.meta.env.VITE_API_URL}/api/students/${student._id}`,
 
 {
 
@@ -542,7 +497,6 @@ Edit
 
 </button>
 
-
 <button
 
 className="delete"
@@ -562,7 +516,7 @@ return;
 
 await axios.delete(
 
-`http://localhost:5000/api/students/${student._id}`
+`${import.meta.env.VITE_API_URL}/api/students/${student._id}`
 
 );
 

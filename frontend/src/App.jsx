@@ -119,23 +119,26 @@ setLoading(true);
 
 try{
 
+
 const response=
 
 await axios.post(
 
-"http://localhost:5000/api/enquiry",
+`${import.meta.env.VITE_API_URL}/api/enquiry`,
 
 {
 
 name,
-
 email,
-
 phone
 
 }
 
 );
+
+
+
+
 
 setLoading(false);
 
@@ -473,12 +476,10 @@ openFaq===index && (
 </section>
 
 
+
 <section
-
 id="register"
-
 className="register"
-
 >
 
 <h2>
@@ -488,52 +489,36 @@ Enroll Now
 </h2>
 
 <form
-
 className="form"
-
 onSubmit={submitForm}
-
 >
 
 <input
-
 type="text"
-
 placeholder="Your Name"
-
 />
 
 <input
-
 type="email"
-
 placeholder="Your Email"
-
 />
 
 <input
-
 type="tel"
-
 placeholder="Phone Number"
-
 maxLength="10"
-
 />
 
 <button
-
 disabled={loading}
-
+className="submit-btn"
 >
 
 {
-
 loading
-
 ?
 
-"Submitting..."
+<div className="loader"></div>
 
 :
 
@@ -543,21 +528,93 @@ loading
 
 </button>
 
+</form>
+
+
 {
 
-success &&
+success && (
 
-<p className="success">
+<div className="popup">
 
-Registration Successful 🎉
+<div className="popup-box">
+
+<h2>
+
+🎉 Registration Successful
+
+</h2>
+
+<p>
+
+See you in Workshop 🚀
 
 </p>
 
+<button
+onClick={()=>
+
+setSuccess(false)
+
+}
+>
+
+OK
+
+</button>
+
+</div>
+
+</div>
+
+)
+
 }
 
-</form>
+</section>
+
+
+
+<section className="certificate">
+
+<h2>
+
+Workshop Completion Certificate
+
+</h2>
+
+<div className="certificate-box">
+
+🏆
+
+<h1>
+
+CERTIFICATE
+
+</h1>
+
+<p>
+
+This certifies participation in
+
+</p>
+
+<h3>
+
+AI & Robotics Summer Workshop
+
+</h3>
+
+<p>
+
+Build • Learn • Create
+
+</p>
+
+</div>
 
 </section>
+
 
 
 <footer className="footer">
