@@ -402,16 +402,12 @@ Learning Journey
 <section className="faq">
 
 <h2>
-
 Frequently Asked Questions
-
 </h2>
 
 <div className="faq-box">
 
-{
-
-[
+{[
 {
 q:"Do kids need coding experience?",
 a:"No, beginners are welcome."
@@ -427,9 +423,7 @@ q:"Will participants receive certificates?",
 a:"Yes, certificate will be provided."
 }
 
-].map(
-
-(item,index)=>(
+].map((item,index)=>(
 
 <div
 key={index}
@@ -437,25 +431,19 @@ className="faq-item"
 >
 
 <h3
-
 onClick={()=>
 
 setOpenFaq(
 
 openFaq===index
-
 ?
-
 null
-
 :
-
 index
 
 )
 
 }
-
 >
 
 {item.q}
@@ -464,7 +452,7 @@ index
 
 {
 
-openFaq===index &&
+openFaq===index && (
 
 <p>
 
@@ -472,71 +460,13 @@ openFaq===index &&
 
 </p>
 
-}
-
-</div>
-
 )
-
-)
-
-.map(
-
-(item,index)=>(
-
-<div
-
-key={index}
-
-className="faq-item"
-
->
-
-<h3
-
-onClick={()=>
-
-setOpenFaq(
-
-openFaq===index
-
-?
-
-null
-
-:
-
-index
-
-)
-
-}
-
->
-
-
-
-</h3>
-
-{
-
-openFaq===index &&
-
-<p>
-
-{item}
-
-</p>
 
 }
 
 </div>
 
-)
-
-)
-
-}
+))}
 
 </div>
 
