@@ -90,14 +90,12 @@ message:error.message
 
 
 // READ
-app.get("/api/students", async(req,res)=>{
+app.get("/api/students", async (req,res)=>{
 
 try{
 
 const data =
-await Enquiry.find().sort({
-createdAt:-1
-});
+await Enquiry.find();
 
 res.json(data);
 
@@ -113,7 +111,6 @@ message:error.message
 }
 
 });
-
 
 // UPDATE
 app.put("/api/students/:id", async(req,res)=>{
